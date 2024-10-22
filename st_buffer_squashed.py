@@ -31,10 +31,8 @@ def st_buffer_squashed(linestring, buffer_radius, end_cap_radius):
     first_two_slope = (first_two_y[1] - first_two_y[0])/(first_two_x[1] - first_two_x[0])
     last_two_slope = (last_two_y[1] - last_two_y[0])/(last_two_x[1] - last_two_x[0])
 
-    cap_buffer_ratio = end_cap_radius / buffer_radius
-    
     ### distance to move off from first point or last point to get center of circle
-    circle_center_distance = (1-cap_buffer_ratio**2)/(2*cap_buffer_ratio) * buffer_radius
+    circle_center_distance = (buffer_radius**2-end_cap_radius**2)/(2*end_cap_radius)
     ### radius of circle that will define squashed end
     circle_radius = np.sqrt(circle_center_distance**2 + buffer_radius**2)
     
